@@ -9,7 +9,7 @@ set -e
 echo "Running rootfs build script"
 
 # create raw disk with 50M
-dd if=/dev/zero of=rootfs.img bs=1G count=3
+dd if=/dev/zero of=rootfs.img bs=1M count=3k
 
 # format disk with ext4 filesystem
 mkfs.ext4 rootfs.img -L cloudimg-rootfs
@@ -21,6 +21,9 @@ mount -o loop rootfs.img /rootfs
 # download & extract appropriate base rootfs
 wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-root.tar.xz
 tar -xf focal-server-cloudimg-amd64-root.tar.xz -C rootfs
+
+# copy over the netplan
+cp /scripts/01-config.yml /rootfs/etc/netplan
 
 chroot rootfs bash -c "groupadd -r ubuntu && useradd -m -r -g ubuntu ubuntu -s /bin/bash"
 chroot rootfs bash -c "echo 'ubuntu ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
@@ -36,8 +39,8 @@ chroot rootfs apt-get install python3.9 -y
 chroot rootfs apt-get install python3-pip -y
 chroot rootfs apt-get install python3-notebook -y
 
-chroot rootfs pip3 install pandas
-chroot rootfs pip3 install seaborn
+chroot rootfs pip3 install -q pandas
+chroot rootfs pip3 install -q seaborn
 
 # save csv file to data
 mkdir -p /rootfs/data
