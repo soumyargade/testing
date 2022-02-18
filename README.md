@@ -55,7 +55,7 @@ cd ~/.jupyter
 sudo jupyter notebook --allow-root --ip=0.0.0.0
 ```
 12. Open browser & go to `127.0.0.1:8888`.
-13. Enter in password created from step #11 & paste in code snippet.
+13. Enter in password created in step #11 & paste in code snippet.
 ``` python
 import pandas as pd
 import seaborn as sns
@@ -71,5 +71,5 @@ kind ="count", data = titanic)
 ## Provisioning Script (20)
 
 ## Screencast (10)
-* Building a Virtual Machine Image - 
+* Building a Virtual Machine Image - https://youtu.be/6FeWXH9TXdk.
 * Provisioning Script - 
