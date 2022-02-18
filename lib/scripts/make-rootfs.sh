@@ -23,7 +23,7 @@ wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-r
 tar -xf focal-server-cloudimg-amd64-root.tar.xz -C rootfs
 
 # copy over the netplan
-cp /scripts/01-config.yml /rootfs/etc/netplan
+cp /scripts/01-config.yaml /rootfs/etc/netplan
 
 chroot rootfs bash -c "groupadd -r ubuntu && useradd -m -r -g ubuntu ubuntu -s /bin/bash"
 chroot rootfs bash -c "echo 'ubuntu ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
