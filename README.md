@@ -19,7 +19,14 @@ p init
 ``` bash
 p build
 ```
+5. Convert image to VMDK disk within the shared volume.
+``` bash
+cd sharedVol
+VBoxManage convertdd rootfs.img disk.vmdk
+```
 
 ## Provisioning Script (20)
 
 ## Screencast (10)
+* Building a Virtual Machine Image - 
+* Provisioning Script - 
