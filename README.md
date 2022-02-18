@@ -24,7 +24,7 @@ p build
 cd sharedVol
 VBoxManage convertdd rootfs.img disk.vmdk
 ```
-6. Configure & start up the VirtualBox VM.
+6. Configure the VirtualBox VM.
 ``` bash
 VBoxManage createvm --name jn --register
 VBoxManage storagectl jn --name IDE --add ide
@@ -36,7 +36,36 @@ VBoxManage modifyvm jn --uart1 0x3f8 4 --uartmode1 disconnected
 VBoxManage modifyvm jn --nic1 nat
 VBoxManage modifyvm jn --nictype1 virtio
 VBoxManage modifyvm jn --natpf1 "jupyter,tcp,,8888,,8888"
-VBoxManage startvm jn
+```
+7. Go to VirtualBox, click on the VM labeled `jn` & hit "Start".
+8. Login to the VM with username "ubuntu" & password "ubuntu".
+9. Make sure you're able to `ping 8.8.8.8`.
+``` bash
+cd ../..
+sudo netplan apply
+sudo netplan generate
+ping 8.8.8.8
+```
+10. Add `ubuntu` to etc/hosts file.
+11. Start up the Jupyter Notebook.
+``` bash
+jupyter notebook password
+cp data/titanic.csv ~/.jupyter/titanic.csv
+cd ~/.jupyter
+sudo jupyter notebook --allow-root --ip=0.0.0.0
+```
+12. Open browser & go to `127.0.0.1:8888`.
+13. Enter in password created from step #11 & paste in code snippet.
+``` python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+titanic = pd.read_csv('/data/titanic.csv')
+
+# Countplot
+sns.catplot(x ="Sex", hue ="Survived",
+kind ="count", data = titanic)
 ```
 
 ## Provisioning Script (20)
