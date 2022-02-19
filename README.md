@@ -67,9 +67,23 @@ titanic = pd.read_csv('/data/titanic.csv')
 sns.catplot(x ="Sex", hue ="Survived",
 kind ="count", data = titanic)
 ```
-
 ## Provisioning Script (20)
-
+Follow the instructions below to run the program:
+1. Clone this repo & cd into provisionWorkshop.
+``` bash
+git clone https://github.ncsu.edu/CSC-DevOps-S22/HW2-srgade-DevOps.git
+cd HW2-srgade-DevOps/provisionWorkshop
+```
+2. Install dependencies & set your token.
+``` bash
+npm install
+# Mac/Linux
+export NCSU_DOTOKEN="xxx"
+```
+3. Run the node program.
+``` bash
+node index.js
+```
 ## Screencast (10)
 * Building a Virtual Machine Image - https://youtu.be/6FeWXH9TXdk.
-* Provisioning Script - 
+* Provisioning Script - link.
